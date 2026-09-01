@@ -8,245 +8,670 @@
 <title>Một chút muốn nói với chị</title>
 
 <style>
+
 * {
     box-sizing: border-box;
+}
 
-    .message {
-    font-size: 17px;
-    line-height: 1.7;
-    color: #555;
-    text-align: left;
-    padding: 5px 5px 10px;
-    white-space: pre-line;
-
-    }
+html,
+body {
+    width: 100%;
+    min-height: 100%;
 }
 
 body {
     margin: 0;
     min-height: 100vh;
     min-height: 100dvh;
+
     display: flex;
     justify-content: center;
     align-items: center;
-    padding: 18px;
-    font-family: Arial, sans-serif;
-    background: linear-gradient(135deg, #f3eeee, #fffafa);
+
+    padding: 20px;
+
+    font-family: "Segoe UI", Arial, sans-serif;
+
+    color: #3f3540;
+
+    background:
+        radial-gradient(
+            circle at 12% 15%,
+            rgba(255, 190, 215, 0.65) 0,
+            rgba(255, 190, 215, 0) 30%
+        ),
+        radial-gradient(
+            circle at 88% 20%,
+            rgba(215, 195, 255, 0.55) 0,
+            rgba(215, 195, 255, 0) 32%
+        ),
+        radial-gradient(
+            circle at 75% 90%,
+            rgba(180, 215, 255, 0.55) 0,
+            rgba(180, 215, 255, 0) 32%
+        ),
+        linear-gradient(
+            135deg,
+            #fff7fa 0%,
+            #f8f5ff 50%,
+            #f1f8ff 100%
+        );
+
+    background-attachment: fixed;
+
+    overflow-x: hidden;
 }
+
+
+/* =========================
+   CONTAINER
+========================= */
 
 .container {
     width: 100%;
-    max-width: 430px;
-    padding: 28px 22px;
-    background: white;
-    border-radius: 24px;
-    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.12);
+    max-width: 460px;
+
+    padding: 34px 26px 28px;
+
+    position: relative;
+    z-index: 1;
+
     text-align: center;
+
+    background: rgba(255, 255, 255, 0.78);
+
+    border: 1px solid rgba(255, 255, 255, 0.9);
+
+    border-radius: 30px;
+
+    box-shadow:
+        0 25px 70px rgba(112, 92, 130, 0.16),
+        0 5px 20px rgba(112, 92, 130, 0.08);
+
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+
+    animation: cardIn 0.65s ease-out;
 }
+
+
+/* =========================
+   CARD ANIMATION
+========================= */
+
+@keyframes cardIn {
+
+    from {
+        opacity: 0;
+        transform: translateY(18px) scale(0.97);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+
+}
+
+
+/* =========================
+   ICON
+========================= */
 
 .icon {
-    font-size: 65px;
-    margin-bottom: 8px;
+    width: 86px;
+    height: 86px;
+
+    margin: 0 auto 12px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    font-size: 48px;
+
+    border-radius: 50%;
+
+    background:
+        linear-gradient(
+            145deg,
+            #ffffff,
+            #fff0f6
+        );
+
+    box-shadow:
+        0 10px 28px rgba(216, 139, 174, 0.18);
 }
+
+
+/* =========================
+   TITLE
+========================= */
 
 h1 {
-    font-size: 23px;
+    margin: 8px 0 24px;
+
+    font-size: 25px;
     line-height: 1.4;
-    color: #555;
-    margin: 8px 0 20px;
+
+    font-weight: 700;
+
+    letter-spacing: -0.3px;
+
+    color: #51404e;
 }
 
+
+/* =========================
+   QUESTION
+========================= */
+
 .question {
-    font-size: 20px;
-    line-height: 1.55;
-    color: #333;
     margin-bottom: 22px;
+
+    font-size: 20px;
+    line-height: 1.6;
+
+    font-weight: 600;
+
+    color: #3e3440;
 }
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+.message {
+    padding: 8px 4px 12px;
+
+    font-size: 17px;
+    line-height: 1.8;
+
+    color: #5b515b;
+
+    text-align: left;
+
+    white-space: pre-line;
+}
+
+
+/* =========================
+   OPTIONS
+========================= */
 
 .option-list {
     display: flex;
+
     flex-direction: column;
-    gap: 10px;
+
+    gap: 11px;
+
     text-align: left;
 }
 
+
 .option {
     display: flex;
+
     align-items: center;
-    gap: 10px;
-    padding: 13px 15px;
-    border: 1px solid #ddd;
-    border-radius: 12px;
+
+    gap: 12px;
+
+    padding: 14px 16px;
+
+    border: 1px solid #eadfe7;
+
+    border-radius: 15px;
+
     cursor: pointer;
-    background: #fafafa;
+
+    background: rgba(255, 255, 255, 0.72);
+
+    transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+
+    box-shadow:
+        0 4px 12px rgba(90, 65, 90, 0.04);
 }
+
+
+.option:hover {
+    transform: translateY(-1px);
+
+    border-color: #e0b8cc;
+
+    background: #fff8fb;
+
+    box-shadow:
+        0 8px 18px rgba(150, 90, 125, 0.09);
+}
+
+
+.option:has(input:checked) {
+    border-color: #d79ab7;
+
+    background: #fff2f7;
+
+    box-shadow:
+        0 7px 18px rgba(190, 120, 150, 0.10);
+}
+
 
 .option input {
     width: 18px;
     height: 18px;
+
+    flex: 0 0 auto;
+
+    accent-color: #c982a5;
 }
 
-.option:hover {
-    background: #f3f3f3;
-}
+
+/* =========================
+   BUTTON AREA
+========================= */
 
 .buttons {
     position: relative;
+
     min-height: 55px;
+
     display: flex;
+
     justify-content: center;
+
     align-items: center;
-    gap: 15px;
+
+    gap: 13px;
 }
+
+
+/* =========================
+   ALL BUTTONS
+========================= */
 
 button {
     border: none;
-    border-radius: 13px;
+
+    border-radius: 14px;
+
     padding: 14px 25px;
+
+    font-family: inherit;
+
     font-size: 16px;
-    font-weight: bold;
+
+    font-weight: 700;
+
     cursor: pointer;
+
     -webkit-tap-highlight-color: transparent;
+
+    transition:
+        transform 0.18s ease,
+        box-shadow 0.18s ease,
+        filter 0.18s ease;
 }
+
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+
+button:active {
+    transform: scale(0.96);
+}
+
+
+/* =========================
+   YES BUTTON
+========================= */
 
 #yesBtn {
-    background: #777;
     color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #c77b9f,
+            #ad6c91
+        );
+
+    box-shadow:
+        0 8px 20px rgba(174, 103, 143, 0.25);
 }
+
+
+#yesBtn:hover {
+    filter: brightness(1.05);
+
+    box-shadow:
+        0 11px 24px rgba(174, 103, 143, 0.3);
+}
+
+
+/* =========================
+   NO BUTTON
+========================= */
 
 #noBtn {
-    background: #eee;
-    color: #555;
+    color: #665b64;
+
+    background: #f3edf1;
+
+    box-shadow:
+        0 5px 15px rgba(80, 60, 75, 0.07);
 }
 
-#yesBtn:active,
-#noBtn:active {
-    transform: scale(0.95);
-}
+
+/* =========================
+   NEXT BUTTON
+========================= */
 
 .nextBtn {
-    background: #777;
-    color: white;
     width: 100%;
+
     margin-top: 20px;
+
+    color: white;
+
+    background:
+        linear-gradient(
+            135deg,
+            #b8799a,
+            #8f718e
+        );
+
+    box-shadow:
+        0 9px 22px rgba(130, 91, 119, 0.2);
 }
+
+
+.nextBtn:hover {
+    filter: brightness(1.05);
+}
+
+
+/* =========================
+   TEXTAREA
+========================= */
 
 textarea {
     width: 100%;
-    min-height: 130px;
-    padding: 15px;
-    border: 1px solid #ddd;
-    border-radius: 13px;
+
+    min-height: 135px;
+
+    padding: 15px 16px;
+
+    border: 1px solid #e5d9e1;
+
+    border-radius: 15px;
+
     resize: vertical;
-    font-family: Arial, sans-serif;
+
+    font-family: inherit;
+
     font-size: 16px;
+
+    line-height: 1.55;
+
+    color: #493f48;
+
+    background: rgba(255, 255, 255, 0.78);
+
     outline: none;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
 }
+
+
+textarea::placeholder {
+    color: #aaa0aa;
+}
+
 
 textarea:focus {
-    border-color: #999;
+    border-color: #cf94b0;
+
+    background: white;
+
+    box-shadow:
+        0 0 0 4px rgba(207, 148, 176, 0.12);
 }
+
+
+/* =========================
+   PROGRESS
+========================= */
 
 .progress {
-    margin-top: 20px;
-    color: #aaa;
+    margin-top: 22px;
+
+    color: #a296a1;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+
+/* =========================
+   SMALL TEXT
+========================= */
+
+.small {
+    margin-top: 9px;
+
+    color: #aaa1aa;
+
     font-size: 13px;
 }
 
-.small {
-    margin-top: 8px;
-    color: #aaa;
-    font-size: 13px;
+
+/* =========================
+   ERROR
+========================= */
+
+.error {
+    margin-top: 10px;
+
+    color: #c65f70;
+
+    font-size: 14px;
 }
+
+
+/* =========================
+   FINAL SCREEN
+========================= */
+
+.final {
+    font-size: 17px;
+
+    line-height: 1.8;
+
+    color: #514850;
+}
+
+
+.final h2 {
+    margin-top: 0;
+
+    color: #594452;
+}
+
+
+/* =========================
+   HIDDEN
+========================= */
 
 .hidden {
     display: none !important;
 }
 
-.final {
-    font-size: 17px;
-    line-height: 1.7;
-    color: #444;
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 480px) {
+
+    body {
+        padding: 14px;
+    }
+
+
+    .container {
+        padding: 29px 20px 24px;
+
+        border-radius: 25px;
+    }
+
+
+    .icon {
+        width: 76px;
+        height: 76px;
+
+        font-size: 42px;
+    }
+
+
+    h1 {
+        font-size: 22px;
+    }
+
+
+    .question {
+        font-size: 19px;
+    }
+
 }
 
-.final h2 {
-    color: #555;
-}
 
-.error {
-    color: #d9534f;
-    font-size: 14px;
-    margin-top: 10px;
-}
+/* =========================
+   SMALL PHONE
+========================= */
 
 @media (max-width: 360px) {
 
     .container {
-        padding: 25px 18px;
+        padding: 25px 17px 22px;
     }
+
 
     .icon {
-        font-size: 60px;
+        width: 68px;
+        height: 68px;
+
+        font-size: 38px;
     }
 
+
     h1 {
-        font-size: 21px;
+        font-size: 20px;
     }
+
 
     .question {
         font-size: 18px;
     }
 
+
     button {
         min-width: 105px;
-        font-size: 16px;
+
+        font-size: 15px;
     }
+
 }
+
+
+/* =========================
+   REDUCED MOTION
+========================= */
+
+@media (prefers-reduced-motion: reduce) {
+
+    *,
+    *::before,
+    *::after {
+        animation: none !important;
+
+        transition: none !important;
+    }
+
+}
+
 </style>
-</head>
+
 
 <body>
 
 <div class="container">
 
-    <!-- ================================================= -->
-    <!-- ⭐ CÓ THỂ CHỈNH: ICON -->
-    <!-- ================================================= -->
-
-    <div class="icon">🙇‍♂️</div>
-
-
-    <!-- ================================================= -->
-    <!-- ⭐ CÓ THỂ CHỈNH: TIÊU ĐỀ -->
-    <!-- ================================================= -->
+    <div class="icon">
+        🙇‍♂️
+    </div>
 
     <h1>
         Em muốn nói với chị một chút...
     </h1>
 
 
-    <!-- ================================================= -->
-    <!-- KHU VỰC CÂU HỎI -->
-    <!-- ================================================= -->
-
     <div id="questionArea">
 
-        <div class="question" id="question"></div>
+        <div
+            class="question"
+            id="question">
+        </div>
+
 
         <div id="answerArea"></div>
 
-        <div class="buttons" id="yesNoButtons">
-            <button id="yesBtn">Có</button>
-            <button id="noBtn">Không</button>
+
+        <div
+            class="buttons"
+            id="yesNoButtons">
+
+            <button id="yesBtn">
+                Có
+            </button>
+
+            <button id="noBtn">
+                Không
+            </button>
+
         </div>
 
-        <button class="nextBtn hidden" id="nextBtn">
+
+        <button
+            class="nextBtn hidden"
+            id="nextBtn">
+
             Tiếp tục
+
         </button>
 
-        <div class="error" id="error"></div>
 
-        <div class="progress" id="progress"></div>
+        <div
+            class="error"
+            id="error">
+        </div>
+
+
+        <div
+            class="progress"
+            id="progress">
+        </div>
+
 
         <div class="small">
             Chị cứ trả lời thật lòng nhé.
@@ -255,11 +680,9 @@ textarea:focus {
     </div>
 
 
-    <!-- ================================================= -->
-    <!-- MÀN HÌNH CUỐI                                     -->
-    <!-- ================================================= -->
-
-    <div id="finalArea" class="final hidden">
+    <div
+        id="finalArea"
+        class="final hidden">
 
         <h2>
             Cảm ơn chị đã trả lời.
@@ -281,36 +704,19 @@ textarea:focus {
 
 <script>
 
-// =====================================================
-// ⭐⭐⭐ CHỈNH CÂU HỎI Ở ĐÂY ⭐⭐⭐
-// =====================================================
-//
-// type:
-// "yesno"     → YES / NO
-// "single"    → chọn đúng 1 đáp án
-// "multiple"  → chọn nhiều đáp án
-// "text"      → tự nhập câu trả lời
-//
-// dodge:
-// true  → nút NO chạy
-// false → nút NO bình thường
-//
-// =====================================================
+
+/* =====================================================
+   CÂU HỎI
+===================================================== */
 
 const questions = [
-
-
-    // =================================================
-    // CÂU 2: CHỌN 1 ĐÁP ÁN
-    // =================================================
 
     {
         type: "single",
 
-        // ⭐ CÓ THỂ CHỈNH CÂU HỎI
-        question: "Chị còn thấy khó chịu về chuyện hôm qua không?",
+        question:
+            "Chị còn thấy khó chịu về chuyện hôm qua không?",
 
-        // ⭐ CÓ THỂ THÊM / XÓA ĐÁP ÁN
         options: [
             "Không",
             "Còn một chút",
@@ -322,85 +728,60 @@ const questions = [
     {
         type: "message",
 
-            text: `
-        Hôm qua em có hơi vô duyên khi nhắc lại chuyện cũ lần 2 trong khi lần đầu chị đã phản ứng mạnh khi em nhắc đến điều đó.
+        text: `
+Hôm qua em có hơi vô duyên khi nhắc lại chuyện cũ lần 2 trong khi lần đầu chị đã phản ứng mạnh khi em nhắc đến điều đó.
 
-        Em tin chị không còn lụy anh đó và sẽ không nhắc lại chuyện đó nữa.
+Em tin chị không còn lụy anh đó và sẽ không nhắc lại chuyện đó nữa.
 
-        Em thật lòng xin lỗi chị. Xin lỗi chị nhiều lắmmm
-            `
+Em thật lòng xin lỗi chị. Xin lỗi chị nhiều lắmmm
+        `
     },
 
-    // =================================================
-    // CÂU 3: CHỌN NHIỀU ĐÁP ÁN
-    // =================================================
-
-    // {
-    //     type: "multiple",
-
-    //     // ⭐ CÓ THỂ CHỈNH CÂU HỎI
-    //     question: "Chị muốn em thay đổi điều gì?",
-
-    //     // ⭐ CÓ THỂ THÊM / XÓA ĐÁP ÁN
-    //     options: [
-    //         "Suy nghĩ trước khi nói",
-    //         "Không tự ý đánh giá người khác",
-    //         "Bớt trêu quá đà",
-    //         "Tinh tế hơn",
-    //         "Biết xin lỗi đúng lúc"
-    //     ]
-    // },
-
-
-    // =================================================
-    // CÂU 4: TỰ ĐIỀN
-    // =================================================
 
     {
         type: "text",
 
-        // ⭐ CÓ THỂ CHỈNH CÂU HỎI
-        question: "Có điều gì chị muốn em giải thích thêm không?",
+        question:
+            "Có điều gì chị muốn em giải thích thêm không?",
 
-        // ⭐ CÓ THỂ CHỈNH GỢI Ý
-        placeholder: "Chị cứ nói thật nhé..."
+        placeholder:
+            "Chị cứ nói thật nhé..."
     },
 
-
-    
-
-    // =================================================
-    // CÂU 6: YES / NO
-    // =================================================
 
     {
         type: "yesno",
 
-        // ⭐ CÓ THỂ CHỈNH CÂU HỎI
-        question: "Chị tha thứ cho em nhaaa",
+        question:
+            "Chị tha thứ cho em nhaaa",
 
-        // ⭐ CÓ THỂ CHỈNH 2 NÚT
-        yes: "Đồng ý",
-        no: "Không đồng ý",
+        yes:
+            "Đồng ý",
 
-        // ⭐ true = NO chạy
-        dodge: true
+        no:
+            "Không đồng ý",
+
+        dodge:
+            true
     }
 
 ];
 
 
-// =====================================================
-// ⭐ KHÔNG CẦN CHỈNH PHẦN BÊN DƯỚI
-// =====================================================
+/* =====================================================
+   BIẾN
+===================================================== */
 
 let currentQuestion = 0;
 
 let answers = [];
 
-// ⭐ ĐẾM SỐ LẦN BẤM NO CỦA CÂU HIỆN TẠI
 let noClickCount = 0;
 
+
+/* =====================================================
+   ELEMENT
+===================================================== */
 
 const questionElement =
     document.getElementById("question");
@@ -433,60 +814,74 @@ const finalArea =
     document.getElementById("finalArea");
 
 
-// =====================================================
-// HIỂN THỊ CÂU HỎI
-// =====================================================
+/* =====================================================
+   HIỂN THỊ CÂU HỎI
+===================================================== */
 
 function showQuestion() {
 
-    const q = questions[currentQuestion];
+    const q =
+        questions[currentQuestion];
 
-    // ⭐ Sang câu mới → reset số lần NO
+
     noClickCount = 0;
 
-    questionElement.textContent = q.question;
+
+    questionElement.textContent =
+        q.question || "";
+
 
     answerArea.innerHTML = "";
 
+
     error.textContent = "";
+
 
     yesNoButtons.classList.add("hidden");
 
+
     nextBtn.classList.add("hidden");
 
+
     noBtn.style.position = "static";
+
     noBtn.style.left = "auto";
+
     noBtn.style.top = "auto";
+
 
     if (q.type === "message") {
 
         progress.textContent = "";
 
-    } else {
+    }
+    else {
 
         progress.textContent =
             `Câu ${currentQuestion + 1} / ${questions.length}`;
 
     }
 
-    // =================================================
-    // YES / NO
-    // =================================================
+
+    /* =========================
+       YES / NO
+    ========================= */
 
     if (q.type === "yesno") {
 
         yesNoButtons.classList.remove("hidden");
 
         yesBtn.textContent = q.yes;
+
         noBtn.textContent = q.no;
 
         return;
     }
 
 
-    // =================================================
-    // CHỌN 1 ĐÁP ÁN
-    // =================================================
+    /* =========================
+       SINGLE
+    ========================= */
 
     if (q.type === "single") {
 
@@ -495,19 +890,27 @@ function showQuestion() {
             const label =
                 document.createElement("label");
 
+
             label.className = "option";
+
 
             label.innerHTML = `
                 <input
                     type="radio"
                     name="singleAnswer"
-                    value="${option}">
-                <span>${option}</span>
+                    value="${option}"
+                >
+
+                <span>
+                    ${option}
+                </span>
             `;
+
 
             answerArea.appendChild(label);
 
         });
+
 
         nextBtn.classList.remove("hidden");
 
@@ -515,9 +918,9 @@ function showQuestion() {
     }
 
 
-    // =================================================
-    // CHỌN NHIỀU ĐÁP ÁN
-    // =================================================
+    /* =========================
+       MULTIPLE
+    ========================= */
 
     if (q.type === "multiple") {
 
@@ -526,18 +929,26 @@ function showQuestion() {
             const label =
                 document.createElement("label");
 
+
             label.className = "option";
+
 
             label.innerHTML = `
                 <input
                     type="checkbox"
-                    value="${option}">
-                <span>${option}</span>
+                    value="${option}"
+                >
+
+                <span>
+                    ${option}
+                </span>
             `;
+
 
             answerArea.appendChild(label);
 
         });
+
 
         nextBtn.classList.remove("hidden");
 
@@ -545,37 +956,57 @@ function showQuestion() {
     }
 
 
-    // =================================================
-    // TỰ ĐIỀN
-    // =================================================
+    /* =========================
+       TEXT
+    ========================= */
 
     if (q.type === "text") {
 
         const textarea =
             document.createElement("textarea");
 
-        textarea.placeholder = q.placeholder;
 
-        textarea.id = "textAnswer";
+        textarea.placeholder =
+            q.placeholder;
+
+
+        textarea.id =
+            "textAnswer";
+
 
         answerArea.appendChild(textarea);
 
+
         nextBtn.classList.remove("hidden");
 
+        return;
     }
+
+
+    /* =========================
+       MESSAGE
+    ========================= */
 
     if (q.type === "message") {
 
         const message =
             document.createElement("div");
 
-        message.className = "message";
 
-        message.textContent = q.text;
+        message.className =
+            "message";
+
+
+        message.textContent =
+            q.text;
+
 
         answerArea.appendChild(message);
 
-        nextBtn.textContent = "Tiếp tục";
+
+        nextBtn.textContent =
+            "Tiếp tục";
+
 
         nextBtn.classList.remove("hidden");
 
@@ -585,210 +1016,252 @@ function showQuestion() {
 }
 
 
-// =====================================================
-// LƯU CÂU TRẢ LỜI
-// =====================================================
+/* =====================================================
+   LƯU CÂU TRẢ LỜI
+===================================================== */
 
 function saveAnswer(answer) {
 
     answers.push({
 
         question:
-            questions[currentQuestion].question,
+            questions[currentQuestion].question || "Message",
 
-        answer: answer,
+        answer:
+            answer,
 
-        // ⭐ LƯU SỐ LẦN BẤM NO
-        noClicks: noClickCount
+        noClicks:
+            noClickCount
 
     });
 
 }
 
 
-// =====================================================
-// SANG CÂU TIẾP THEO
-// =====================================================
+/* =====================================================
+   CÂU TIẾP THEO
+===================================================== */
 
 function goNext() {
 
     currentQuestion++;
 
-    if (currentQuestion >= questions.length) {
+
+    if (
+        currentQuestion >=
+        questions.length
+    ) {
 
         submitAnswers();
 
         return;
     }
 
+
     showQuestion();
 
 }
 
 
-// =====================================================
-// NÚT YES
-// =====================================================
+/* =====================================================
+   NÚT YES
+===================================================== */
 
-yesBtn.addEventListener("click", function() {
+yesBtn.addEventListener(
+    "click",
+    function() {
 
-    saveAnswer(yesBtn.textContent);
+        saveAnswer(
+            yesBtn.textContent
+        );
 
-    goNext();
+        goNext();
 
-});
-
-
-// =====================================================
-// NÚT NO
-// =====================================================
-
-noBtn.addEventListener("click", function() {
-
-    const q = questions[currentQuestion];
-
-    // ⭐ Mỗi lần bấm NO tăng 1
-    noClickCount++;
-
-
-    if (q.dodge) {
-
-        moveNoButton();
-
-        return;
     }
+);
 
 
-    saveAnswer(noBtn.textContent);
+/* =====================================================
+   NÚT NO
+===================================================== */
 
-    goNext();
+noBtn.addEventListener(
+    "click",
+    function() {
 
-});
-
-
-// =====================================================
-// NÚT TIẾP TỤC
-// =====================================================
-
-nextBtn.addEventListener("click", function() {
-
-    const q = questions[currentQuestion];
+        const q =
+            questions[currentQuestion];
 
 
-    // =================================================
-    // CHỌN 1
-    // =================================================
+        noClickCount++;
 
-    if (q.type === "single") {
 
-        const selected =
-            document.querySelector(
-                'input[name="singleAnswer"]:checked'
+        if (q.dodge) {
+
+            moveNoButton();
+
+            return;
+        }
+
+
+        saveAnswer(
+            noBtn.textContent
+        );
+
+
+        goNext();
+
+    }
+);
+
+
+/* =====================================================
+   NÚT TIẾP TỤC
+===================================================== */
+
+nextBtn.addEventListener(
+    "click",
+    function() {
+
+        const q =
+            questions[currentQuestion];
+
+
+        /* =========================
+           SINGLE
+        ========================= */
+
+        if (q.type === "single") {
+
+            const selected =
+                document.querySelector(
+                    'input[name="singleAnswer"]:checked'
+                );
+
+
+            if (!selected) {
+
+                error.textContent =
+                    "Chị chọn một ý nhé.";
+
+                return;
+            }
+
+
+            saveAnswer(
+                selected.value
             );
 
 
-        if (!selected) {
-
-            error.textContent =
-                "Chị chọn một ý nhé.";
+            goNext();
 
             return;
         }
 
 
-        saveAnswer(selected.value);
+        /* =========================
+           MULTIPLE
+        ========================= */
 
-        goNext();
+        if (q.type === "multiple") {
 
-        return;
-    }
+            const checked =
+                document.querySelectorAll(
+                    '#answerArea input[type="checkbox"]:checked'
+                );
 
 
-    // =================================================
-    // CHỌN NHIỀU
-    // =================================================
+            if (checked.length === 0) {
 
-    if (q.type === "multiple") {
+                error.textContent =
+                    "Chị chọn ít nhất một ý nhé.";
 
-        const checked =
-            document.querySelectorAll(
-                '#answerArea input[type="checkbox"]:checked'
+                return;
+            }
+
+
+            const selected = [];
+
+
+            checked.forEach(
+                function(item) {
+
+                    selected.push(
+                        item.value
+                    );
+
+                }
             );
 
 
-        if (checked.length === 0) {
-
-            error.textContent =
-                "Chị chọn ít nhất một ý nhé.";
-
-            return;
-        }
+            saveAnswer(
+                selected.join(", ")
+            );
 
 
-        const selected = [];
-
-
-        checked.forEach(function(item) {
-
-            selected.push(item.value);
-
-        });
-
-
-        saveAnswer(selected.join(", "));
-
-        goNext();
-
-        return;
-    }
-
-
-    // =================================================
-    // TỰ ĐIỀN
-    // =================================================
-
-    if (q.type === "text") {
-
-        const textarea =
-            document.getElementById("textAnswer");
-
-
-        const value =
-            textarea.value.trim();
-
-
-        if (value === "") {
-
-            error.textContent =
-                "Chị viết cho em một chút nhé.";
+            goNext();
 
             return;
         }
 
 
-        saveAnswer(value);
+        /* =========================
+           TEXT
+        ========================= */
 
-        goNext();
+        if (q.type === "text") {
+
+            const textarea =
+                document.getElementById(
+                    "textAnswer"
+                );
+
+
+            const value =
+                textarea.value.trim();
+
+
+            if (value === "") {
+
+                error.textContent =
+                    "Chị viết cho em một chút nhé.";
+
+                return;
+            }
+
+
+            saveAnswer(value);
+
+            goNext();
+
+            return;
+        }
+
+
+        /* =========================
+           MESSAGE
+        ========================= */
+
+        if (q.type === "message") {
+
+            goNext();
+
+            return;
+        }
 
     }
-
-    if (q.type === "message") {
-
-        goNext();
-
-        return;
-    }
-
-});
+);
 
 
-// =====================================================
-// NÚT NO CHẠY
-// =====================================================
+/* =====================================================
+   NÚT NO CHẠY
+===================================================== */
 
 function moveNoButton() {
 
-    noBtn.style.position = "fixed";
+    noBtn.style.position =
+        "fixed";
+
 
     const padding = 20;
 
@@ -808,43 +1281,53 @@ function moveNoButton() {
     const x =
         padding +
         Math.random() *
-        Math.max(0, maxX - padding);
+        Math.max(
+            0,
+            maxX - padding
+        );
 
 
     const y =
         padding +
         Math.random() *
-        Math.max(0, maxY - padding);
+        Math.max(
+            0,
+            maxY - padding
+        );
 
 
-    noBtn.style.left = `${x}px`;
+    noBtn.style.left =
+        `${x}px`;
 
-    noBtn.style.top = `${y}px`;
+
+    noBtn.style.top =
+        `${y}px`;
 
 }
 
 
-// =====================================================
-// ⭐ GOOGLE APPS SCRIPT URL
-// =====================================================
-//
-// ⭐ GIỮ NGUYÊN URL CỦA BẠN Ở ĐÂY
-//
-// =====================================================
+/* =====================================================
+   GOOGLE APPS SCRIPT
+===================================================== */
 
 const GOOGLE_SCRIPT_URL =
     "https://script.google.com/macros/s/AKfycbxZMQTaYFYnpkxeNBzAMseCx5trjeKM_Pk4f7jt2Oxk0AJ4APRoRMUoXiBTARAMNBN_/exec";
 
 
-// =====================================================
-// GỬI DỮ LIỆU
-// =====================================================
+/* =====================================================
+   GỬI DỮ LIỆU
+===================================================== */
 
 function submitAnswers() {
 
-    questionArea.classList.add("hidden");
+    questionArea.classList.add(
+        "hidden"
+    );
 
-    finalArea.classList.remove("hidden");
+
+    finalArea.classList.remove(
+        "hidden"
+    );
 
 
     if (
@@ -860,31 +1343,33 @@ function submitAnswers() {
     }
 
 
-    fetch(GOOGLE_SCRIPT_URL, {
+    fetch(
+        GOOGLE_SCRIPT_URL,
+        {
 
-        method: "POST",
+            method: "POST",
 
-        mode: "no-cors",
+            mode: "no-cors",
 
-        headers: {
-            "Content-Type":
-                "text/plain;charset=utf-8"
-        },
+            headers: {
+                "Content-Type":
+                    "text/plain;charset=utf-8"
+            },
 
-        body: JSON.stringify({
+            body:
+                JSON.stringify({
+                    answers: answers
+                })
 
-            answers: answers
-
-        })
-
-    });
+        }
+    );
 
 }
 
 
-// =====================================================
-// BẮT ĐẦU
-// =====================================================
+/* =====================================================
+   BẮT ĐẦU
+===================================================== */
 
 showQuestion();
 
