@@ -1022,16 +1022,41 @@ function showQuestion() {
 
 function saveAnswer(answer) {
 
-    answers.push({
+    const answerData = {
+        questionNumber: currentQuestion + 1,
+        question: questions[currentQuestion].question,
+        answer: answer,
+        noClicks: noClickCount
+    };
 
-        question:
-            questions[currentQuestion].question || "Message",
+    // Lưu tạm trong trình duyệt
+    answers.push(answerData);
 
-        answer:
-            answer,
+    // ⭐ Gửi NGAY câu này lên Google Sheets
+    sendAnswerToGoogleSheet(answerData);
+}
 
-        noClicks:
-            noClickCount
+function sendAnswerToGoogleSheet(answerData) {
+
+    if (
+        GOOGLE_SCRIPT_URL ===
+        "DÁN_URL_GOOGLE_APPS_SCRIPT_VÀO_ĐÂY"
+    ) {
+        console.log("Chưa cấu hình Google Sheets.");
+        return;
+    }
+
+    fetch(GOOGLE_SCRIPT_URL, {
+
+        method: "POST",
+
+        mode: "no-cors",
+
+        headers: {
+            "Content-Type": "text/plain;charset=utf-8"
+        },
+
+        body: JSON.stringify(answerData)
 
     });
 
@@ -1311,7 +1336,7 @@ function moveNoButton() {
 ===================================================== */
 
 const GOOGLE_SCRIPT_URL =
-    "https://script.google.com/macros/s/AKfycbxZMQTaYFYnpkxeNBzAMseCx5trjeKM_Pk4f7jt2Oxk0AJ4APRoRMUoXiBTARAMNBN_/exec";
+    "https://script.google.com/macros/s/AKfycbyq524yWLVtPtdapM1gj6EW-6zI0O-Uy6NncdHVVwXDuBm4OfHaOwQanTdxxzl3_-Ja/exec";
 
 
 /* =====================================================
@@ -1320,49 +1345,9 @@ const GOOGLE_SCRIPT_URL =
 
 function submitAnswers() {
 
-    questionArea.classList.add(
-        "hidden"
-    );
+    questionArea.classList.add("hidden");
 
-
-    finalArea.classList.remove(
-        "hidden"
-    );
-
-
-    if (
-        GOOGLE_SCRIPT_URL ===
-        "DÁN_URL_GOOGLE_APPS_SCRIPT_VÀO_ĐÂY"
-    ) {
-
-        console.log(
-            "Chưa cấu hình Google Sheets."
-        );
-
-        return;
-    }
-
-
-    fetch(
-        GOOGLE_SCRIPT_URL,
-        {
-
-            method: "POST",
-
-            mode: "no-cors",
-
-            headers: {
-                "Content-Type":
-                    "text/plain;charset=utf-8"
-            },
-
-            body:
-                JSON.stringify({
-                    answers: answers
-                })
-
-        }
-    );
+    finalArea.classList.remove("hidden");
 
 }
 
